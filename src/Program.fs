@@ -1,0 +1,8 @@
+﻿namespace RayTracer.Challenge
+
+
+module Program =
+
+    // For more information see https://aka.ms/fsharp-console-apps
+    printfn "Hello from F#"
+    
