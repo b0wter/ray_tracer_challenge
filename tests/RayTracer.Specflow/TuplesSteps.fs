@@ -207,5 +207,48 @@ module TuplesSteps =
             | None ->
                 failwithf "no color set %s" c
                 
-                
+        let [<Then>] ``(.*) \+ (.*) = color\((.*), (.*), (.*)\)`` (c1: string, c2: string, r: float, g: float, b: float) =
+            let expectedColor = Color.create (r, g, b)
+            match c1 |> _driver.GetColor, c2 |> _driver.GetColor with
+            | Some a, Some b ->
+                let sum = a + b
+                sum |> should equal expectedColor
+            | None, _ | _, None ->
+                failwithf "Either %s or %s are not set" c1 c2
             
+        let [<Then>] ``(.*) \- (.*) = color\((.*), (.*), (.*)\)`` (c1: string, c2: string, r: float, g: float, b: float) =
+            match c1 |> _driver.GetColor, c2 |> _driver.GetColor with
+            | Some a, Some c ->
+                let sum = a - c
+                let expected = Color.create (r,g,b)
+                sum |> should equal expected
+            | None, _ | _, None ->
+                failwithf "Either %s or %s are not set" c1 c2
+            
+        let [<Then>] ``(.*) \* (.*) = color\((.*), (.*), (.*)\)`` (c1: string, c2: string, r: float, g: float, b: float) =
+            let scalar1 = c1 |> Parser.tryParseFloat
+            let scalar2 = c2 |> Parser.tryParseFloat
+            let color1 = c1 |> _driver.GetColor
+            let color2 = c2 |> _driver.GetColor
+            let expected = Color.create (r,g,b)
+            
+            let result =
+                match scalar1, scalar2, color1, color2   with
+                | Some _, Some _, _, _ ->
+                    failwith "Test cannot work with two scalars."
+                | Some _, None, Some _, _ ->
+                    failwith "c1 must not be a color and a scalar at the same time."
+                | None, Some _, _, Some _ ->
+                    failwith "c2 must not be a color and a scalar at the same time."
+                | None, _, None, _ ->
+                    failwith "c1 must either be a scalar or a color."
+                | _, None, _, None ->
+                    failwith "c2 must either be a scalar or a color."
+                | Some a, None, None, Some c ->
+                    a * c
+                | None, Some b, Some c, None ->
+                    b * c
+                | None, None, Some c, Some d ->
+                    c * d
+                    
+            result |> should equal expected
