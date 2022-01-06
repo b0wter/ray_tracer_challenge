@@ -119,15 +119,9 @@ module Tuple =
     let divide (f: float) (t: Tuple) =
         t / f
         
-    let negate t =
-        {
-            t with
-                X = -t.X
-                Y = -t.Y
-                Z = -t.Z
-                W = -t.W
-        }
-    
+    let negate (t: Tuple) =
+        -t
+
     let magnitude (t: Tuple) =
         t.Magnitude
         
