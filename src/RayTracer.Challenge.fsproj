@@ -7,9 +7,11 @@
 
   <ItemGroup>
     <Compile Include="Constants.fs" />
+    <Compile Include="Array2D.fs" />
     <Compile Include="Parser.fs" />
     <Compile Include="Tuple.fs" />
     <Compile Include="Color.fs" />
+    <Compile Include="Canvas.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

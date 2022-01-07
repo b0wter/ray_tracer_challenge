@@ -59,9 +59,30 @@ module Color =
                 B = a.B * f
             }
             
+    /// <summary>
+    /// Creates a new color instance and makes sure that every component is at max 1.0.
+    /// </summary>
+    let createSafe (r, g, b) =
+        if r > 1.0 || g > 1.0 || b > 1.0 then failwith "cannot create color with a component greater than 1.0"
+        else
+            {
+                R = r
+                G = g
+                B = b
+            }
+            
+    /// <summary>
+    /// Creates a new color instance without checking the components.
+    /// </summary>
     let create (r, g, b) =
         {
             R = r
             G = g
             B = b
         }
+        
+    let black =
+        create(0.0, 0.0, 0.0)
+        
+    let white =
+        create(1.0, 1.0, 1.0)

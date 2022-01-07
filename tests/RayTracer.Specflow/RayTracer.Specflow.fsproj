@@ -9,6 +9,8 @@
     <ItemGroup>
         <Compile Include="TuplesDriver.fs" />
         <Compile Include="TuplesSteps.fs" />
+        <Compile Include="CanvasDriver.fs" />
+        <Compile Include="CanvasSteps.fs" />
         <Compile Include="Program.fs" />
     </ItemGroup>
 
