@@ -12,6 +12,7 @@
     <Compile Include="Tuple.fs" />
     <Compile Include="Color.fs" />
     <Compile Include="Canvas.fs" />
+    <Compile Include="PPM.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
