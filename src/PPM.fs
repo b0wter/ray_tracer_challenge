@@ -1,0 +1,2 @@
+module RayTracer.Challenge.PPM
+

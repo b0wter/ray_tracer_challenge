@@ -4,11 +4,12 @@ open System.Collections.Generic
 open RayTracer.Challenge
 open FsUnit.Xunit
 
-module TuplesDriver =
+module Driver =
 
-    type TuplesDriver() =
+    type Driver() =
         let tuples : Dictionary<string, Tuple.Tuple> = Dictionary<string, Tuple.Tuple>()
         let colors : Dictionary<string, Color.Color> = Dictionary<string, Color.Color>()
+        let mutable canvas : Canvas.Canvas<Color.Color> option = None
         
         member public __.SetTuple(key, tuple) =
             do tuples.Add(key, tuple)
@@ -36,3 +37,11 @@ module TuplesDriver =
                 t.Y |> should equal y
                 t.Z |> should equal z
                 t.W |> should equal w
+                
+        member public __.SetCanvas(c) =
+            do canvas <- Some c
+            
+        member public __.GetCanvas() =
+            match canvas with
+            | Some c -> c
+            | None -> failwith "The canvas has not yet been set and cannot be retrieved."
