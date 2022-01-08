@@ -25,7 +25,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\src\RayTracer.Challenge.fsproj" />
+      <ProjectReference Include="..\..\src\raytracer\RayTracer.Challenge.fsproj" />
     </ItemGroup>
 
 </Project>

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "RayTracer.Challenge", "src\RayTracer.Challenge.fsproj", "{213E12D2-5855-4389-A184-20CC582195B6}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "RayTracer.Challenge", "src\raytracer\RayTracer.Challenge.fsproj", "{213E12D2-5855-4389-A184-20CC582195B6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3B6A2C37-664A-49C5-99AC-58FB5AC2C8F0}"
 EndProject
