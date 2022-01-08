@@ -7,7 +7,7 @@ open RayTracer.Challenge
 module TuplesSteps =
     
     [<Binding>]
-    type TupleSteps(driver: TuplesDriver.TuplesDriver) =
+    type TupleSteps(driver: Driver.Driver) =
         let _driver = driver
             
         let [<Given>] ``(.*) ← tuple\((.*), (.*), (.*), (.*)\)`` (t: string, x, y, z, w) =

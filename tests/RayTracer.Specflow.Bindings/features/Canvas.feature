@@ -9,8 +9,8 @@ Feature: Canvas
     Scenario: Writing pixels to a canvas
         Given c ← canvas(10, 20)
         And red ← color(1, 0, 0)
-        When write_pixel(c, 2, 3, red)
-        Then pixel_at(c, 2, 3) = red
+        When write_pixel(c, 2, 15, red)
+        Then pixel_at(c, 2, 15) = red
 
     Scenario: Constructing the PPM header
         Given c ← canvas(5, 3)

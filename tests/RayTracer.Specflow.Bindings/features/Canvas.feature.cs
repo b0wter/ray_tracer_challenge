@@ -159,10 +159,10 @@ namespace RayTracer.Specflow.Bindings.Features
         testRunner.And("red ← color(1, 0, 0)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
-        testRunner.When("write_pixel(c, 2, 3, red)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+        testRunner.When("write_pixel(c, 2, 15, red)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 13
-        testRunner.Then("pixel_at(c, 2, 3) = red", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+        testRunner.Then("pixel_at(c, 2, 15) = red", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

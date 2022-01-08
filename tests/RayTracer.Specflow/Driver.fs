@@ -10,6 +10,7 @@ module Driver =
         let tuples : Dictionary<string, Tuple.Tuple> = Dictionary<string, Tuple.Tuple>()
         let colors : Dictionary<string, Color.Color> = Dictionary<string, Color.Color>()
         let mutable canvas : Canvas.Canvas<Color.Color> option = None
+        let mutable ppm : string option = None
         
         member public __.SetTuple(key, tuple) =
             do tuples.Add(key, tuple)
@@ -45,3 +46,11 @@ module Driver =
             match canvas with
             | Some c -> c
             | None -> failwith "The canvas has not yet been set and cannot be retrieved."
+            
+        member public __.SetPPM (s: string) =
+            do ppm <- Some s
+            
+        member public __.GetPPM () =
+            match ppm with
+            | Some p -> p
+            | None -> failwith "The ppm data has not yet been set and cannot be retrieved."
