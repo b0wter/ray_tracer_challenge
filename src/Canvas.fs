@@ -25,8 +25,14 @@ module Canvas =
     /// <remarks>
     /// Operation is performed in place.
     /// </remarks>
-    let setPixel (canvas: 'a[,]) x y value =
-        do canvas.[x,y] <- value
+    let setPixel x y value canvas =
+        do canvas.Points.[y,x] <- value
+        
+    /// <summary>
+    /// Retrieves the value of a pixel on the canvas.
+    /// </summary>
+    let getPixel x y canvas =
+        canvas.Points.[y,x]
 
     /// <summary>
     /// Creates a canvas where every position is initialized with the given value.
@@ -35,8 +41,7 @@ module Canvas =
         {
             Width = width
             Height = height
-            // Watch out! Array2D uses the y,x coordinates but the ray tracer uses x,y.
-            Points = Array2D.create height width value
+            Points = Array2D.create width height value
         }
         
     let forall (predicate: 'a -> bool) (canvas: Canvas<'a>) : bool =
