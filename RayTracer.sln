@@ -13,6 +13,8 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "RayTracer.Specflow", "tests
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "RayTracer.Tests", "tests\ray_tracer\RayTracer.Tests.fsproj", "{C0917F3B-B320-4FF1-8212-736DADC9EDF6}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Raytracer.Extras", "src\extras\Raytracer.Extras.fsproj", "{0BE3F81A-EB4F-4397-98DC-CE8E32EBC42F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{C0917F3B-B320-4FF1-8212-736DADC9EDF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0917F3B-B320-4FF1-8212-736DADC9EDF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0917F3B-B320-4FF1-8212-736DADC9EDF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BE3F81A-EB4F-4397-98DC-CE8E32EBC42F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BE3F81A-EB4F-4397-98DC-CE8E32EBC42F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BE3F81A-EB4F-4397-98DC-CE8E32EBC42F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BE3F81A-EB4F-4397-98DC-CE8E32EBC42F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F9F74D54-89BC-4BA2-8FF8-FC2685434DA7} = {3B6A2C37-664A-49C5-99AC-58FB5AC2C8F0}
