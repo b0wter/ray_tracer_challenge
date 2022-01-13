@@ -19,11 +19,6 @@ module Color =
                 Math.Abs(c.B - this.B) < Constants.floatEpsilon
             | _ -> false
     
-        override this.GetHashCode () =
-            ( (this.R * Constants.inverseFloatEpsilon |> int).ToString()
-            + (this.G * Constants.inverseFloatEpsilon |> int).ToString()
-            + (this.B * Constants.inverseFloatEpsilon |> int).ToString()).GetHashCode()
-            
         static member (+) (a: Color, b: Color) : Color =
             {
                 R = a.R + b.R

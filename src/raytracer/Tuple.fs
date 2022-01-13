@@ -4,6 +4,7 @@ open System
 
 module Tuple =
     
+    [<CustomEquality; NoComparison>]
     type Tuple =
         {
         X : float
@@ -89,6 +90,16 @@ module Tuple =
                     W = t.W / f
             }
             
+        override this.Equals other =
+            match other with
+            | :? Tuple as t ->
+                Math.Abs(t.X - this.X) < Constants.floatEpsilon &&
+                Math.Abs(t.Y - this.Y) < Constants.floatEpsilon &&
+                Math.Abs(t.Z - this.Z) < Constants.floatEpsilon &&
+                Math.Abs(t.W - this.W) < Constants.floatEpsilon
+            | _ -> false
+                
+            
     let create (x, y, z, w) =
         Tuple.Create (x, y, z, w)
 
@@ -97,6 +108,13 @@ module Tuple =
         
     let createPoint (x, y, z) =
         create (x, y, z, 1.0)
+        
+    let fromList list =
+        match list with
+        | [ x; y; z; w ] ->
+            create (x, y, z, w)
+        | _ ->
+            failwithf "Can only create a tuple from a list with 4 elements. The given list had %i elements" list.Length
         
     let origin =
         createPoint (0.0, 0.0, 0.0)
