@@ -15,7 +15,7 @@ module PPM =
         else s.Trim ()
 
 
-    let component (f: float) =
+    let comp (f: float) =
         Math.Round(255.0 * (Math.Max(0, Math.Min(1.0, f))), 0) |> int |> string
 
     
@@ -33,7 +33,7 @@ module PPM =
             let lastRow =
                 colorComponents
                 |> Seq.fold (fun (acc: string) next ->
-                        let color = next |> component
+                        let color = next |> comp
                         let acc =
                             if (acc.Length + 1 + color.Length > 70) then
                                 previousRows.Add(acc)

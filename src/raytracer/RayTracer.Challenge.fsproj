@@ -5,11 +5,20 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <!-- 
+  Suppresses the warning that tuples, colors and matrices have custom equality operations
+  but not custom GetHashCode implementations.
+  -->
+  <PropertyGroup>
+    <NoWarn>0346</NoWarn>
+  </PropertyGroup>
+  
   <ItemGroup>
     <Compile Include="Constants.fs" />
     <Compile Include="Array2D.fs" />
     <Compile Include="Parser.fs" />
     <Compile Include="Tuple.fs" />
+    <Compile Include="Matrices.fs" />
     <Compile Include="Color.fs" />
     <Compile Include="Canvas.fs" />
     <Compile Include="PPM.fs" />

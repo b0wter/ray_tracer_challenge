@@ -88,3 +88,8 @@ module Array2D =
     let init width height initializer =
         Array2D.init height width initializer
         
+        
+    let iter2 action (a1: 'a[,]) (a2: 'a[,]) =
+        let flatA1 = a1 |> flatten
+        let flatA2 = a2 |> flatten
+        Seq.iter2 action flatA1 flatA2
