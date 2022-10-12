@@ -269,7 +269,7 @@ module Matrices =
         matrix[3, 3] <- 1
         matrix
 
-    /// Creates a transformation used to rotate objects
+    /// Creates a transformation used to rotate objects around the x-axis
     let rotationX r =
         let matrix = createSquare 4 0
         matrix[0, 0] <- 1
@@ -277,5 +277,27 @@ module Matrices =
         matrix[1, 2] <- -(Math.Sin r)
         matrix[2, 1] <- Math.Sin r
         matrix[2, 2] <- Math.Cos r
+        matrix[3, 3] <- 1
+        matrix
+        
+    /// Creates a transformation used to rotate objects around the y-axis
+    let rotationY r =
+        let matrix = createSquare 4 0
+        matrix[0, 0] <- Math.Cos r
+        matrix[0, 2] <- Math.Sin r
+        matrix[1, 1] <- 1
+        matrix[2, 0] <- -(Math.Sin r)
+        matrix[2, 2] <- Math.Cos r
+        matrix[3, 3] <- 1
+        matrix
+        
+    /// Creates a transformation used to rotate objects around the z-axis
+    let rotationZ r =
+        let matrix = createSquare 4 0
+        matrix[0, 0] <- Math.Cos r
+        matrix[0, 1] <- -(Math.Sin r)
+        matrix[1, 0] <- Math.Sin r
+        matrix[1, 1] <- Math.Cos r
+        matrix[2, 2] <- 1
         matrix[3, 3] <- 1
         matrix
