@@ -301,3 +301,14 @@ module Matrices =
         matrix[2, 2] <- 1
         matrix[3, 3] <- 1
         matrix
+
+    /// Creates a transformation used to create a shearing
+    let shearing (x_y, x_z, y_x, y_z, z_x, z_y) =
+        let matrix = identity 4
+        matrix[0, 1] <- x_y
+        matrix[0, 2] <- x_z
+        matrix[1, 0] <- y_x
+        matrix[1, 2] <- y_z
+        matrix[2, 0] <- z_x
+        matrix[2, 1] <- z_y
+        matrix

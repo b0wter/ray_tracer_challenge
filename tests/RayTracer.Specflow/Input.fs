@@ -9,11 +9,13 @@ module Input =
         | Matrix of Matrices.Matrix
         
     let tryFromDriver (driver: Driver.Driver) (name: string) : Input =
-        let argAsTuple = driver.GetTuple name
-        let argAsMatrix = driver.GetMatrix name
-        (argAsTuple
-         |> Option.map Input.Tuple
-         |> Option.orElse (argAsMatrix |> Option.map Input.Matrix)).Value
+        if name = "identity_matrix" then Matrices.identity 4 |> Input.Matrix
+        else
+            let argAsTuple = driver.GetTuple name
+            let argAsMatrix = driver.GetMatrix name
+            (argAsTuple
+             |> Option.map Input.Tuple
+             |> Option.orElse (argAsMatrix |> Option.map Input.Matrix)).Value
         
     let multiply input1 input2 =
         match input1, input2 with

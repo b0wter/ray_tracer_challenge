@@ -11,19 +11,7 @@ module TransformationsStep =
     type TransformationsSteps(driver: Driver.Driver) =
         let _driver = driver
         
-        let matrixFromTable (table: Table) : Matrices.Matrix =
-            let width = table.Header.Count
-            let height = table.RowCount
-            let matrix = Matrices.create height width 0.0
-            do table.Rows |> Seq.iteri (fun i row ->
-                    row.Values |> Seq.iteri (fun j cell ->
-                            let f = System.Double.Parse(cell)
-                            matrix |> Matrices.set i j f
-                        )
-                )
-            matrix
-   
-        let [<Given>] ``(.*) ← translation\((-?\d), (-?\d), (-?\d)\)`` (name: string, x: int, y: int, z: int) =
+        let [<Given>] ``(.*) ← translation\((-?\d*), (-?\d*), (-?\d*)\)`` (name: string, x: int, y: int, z: int) =
             let transform = Matrices.translation (x, y, z)
             do _driver.SetMatrix (name, transform)
 
@@ -41,14 +29,11 @@ module TransformationsStep =
             let transform = Matrices.scaling (x, y, z)
             _driver.SetMatrix (name, transform)
         
-        let [<Then>] ``(\w*) = point\((-?\d*), (-?\d*), (-?\d*)\)`` (name1: string, name2: string, x: int, y: int, z: int) =
-            let arg1 = Input.tryFromDriver _driver name1
-            let arg2 = Input.tryFromDriver _driver name2
+        let [<Then>] ``(\w*) = point\((-?\d*), (-?\d*), (-?\d*)\)`` (name: string, x: int, y: int, z: int) =
+            let arg = Input.tryFromDriver _driver name
             let expected = Tuple.createPoint (x, y, z) |> Input.Tuple
             
-            let multiplicationResult = Input.multiply arg1 arg2
-            
-            multiplicationResult |> should equal expected
+            arg |> should equal expected
             
         let [<Then>] ``(\w*) \* (\w*) = vector\((-?\d*), (-?\d*), (-?\d*)\)`` (name1: string, name2: string, x: int, y: int, z: int) =
             let arg1 = Input.tryFromDriver _driver name1
@@ -119,3 +104,20 @@ module TransformationsStep =
             let multiplicationResult = Input.multiply arg1 arg2
             
             multiplicationResult |> should equal expected
+
+        let [<Given>] ``(\w*) ← shearing\((\d*), (\d*), (\d*), (\d*), (\d*), (\d*)\)`` (name: string, a: float, b: float, c: float, d: float, e: float, f: float) =
+            let shearing = Matrices.shearing (a, b, c, d, e, f)
+            do _driver.SetMatrix (name, shearing)
+            
+        let [<When>] ``(\w*) ← (\w*) \* (\w*)`` (name1: string, name2: string, name3: string) =
+            let arg2 = Input.tryFromDriver _driver name2
+            let arg3 = Input.tryFromDriver _driver name3
+            
+            let multiplicationResult = Input.multiply arg2 arg3
+            let tuple =
+                match multiplicationResult with
+                | Input.Tuple t -> t
+                | _ -> failwith "Input needs to be a tuple at this point"
+            
+            do _driver.SetTuple (name1, tuple)
+            

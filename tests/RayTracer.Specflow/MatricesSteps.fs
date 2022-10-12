@@ -61,19 +61,6 @@ module MatricesSteps =
             let expected = Tuple.create (x, y, z, w)
             (matrix * tuple) |> should equal expected
             
-        let [<Then>] ``(.) \* identity_matrix = (.)`` (m1: string, m2: string) =
-            do m1 |> should equal m2
-            let matrix = m1 |> _driver.ForceMatrix
-            do matrix.Width |> should equal matrix.Height
-            let identity = Matrices.identity matrix.Height
-            matrix * identity |> should equal matrix
-
-        let [<Then>] ``identity_matrix \* (.*) = (.*)`` (t1: string, t2: string) =
-            do t1 |> should equal t2
-            let tuple = t1 |> _driver.ForceTuple
-            let identity = Matrices.identity4
-            identity * tuple |> should equal tuple
-            
         let [<Then>] ``transpose\((.)\) is the following matrix:`` (m: string, table: Table) =
             let expected = table |> matrixFromTable
             let matrix = m |> _driver.ForceMatrix
@@ -123,7 +110,6 @@ module MatricesSteps =
         let [<Then>] ``(.*) is invertible`` (m: string) =
             let matrix = m |> _driver.ForceMatrix
             matrix |> Matrices.isInvertible |> should be True
-            
             
 
         let [<Given>] ``(.*) ← inverse\((.*)\)`` (name1: string, name2: string) =
