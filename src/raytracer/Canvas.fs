@@ -26,13 +26,13 @@ module Canvas =
     /// Operation is performed in place.
     /// </remarks>
     let setPixel x y value canvas =
-        do canvas.Points.[y,x] <- value
+        do canvas.Points[y,x] <- value
         
     /// <summary>
     /// Retrieves the value of a pixel on the canvas.
     /// </summary>
     let getPixel x y canvas =
-        canvas.Points.[y,x]
+        canvas.Points[y,x]
 
     /// <summary>
     /// Creates a canvas where every position is initialized with the given value.

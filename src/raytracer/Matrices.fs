@@ -14,7 +14,7 @@ module Matrices =
         }
         member this.Item
             with get(i,j) =
-                this.Cells.[i,j]
+                this.Cells[i,j]
             and set(i,j) v =
                 this.Cells[i,j] <- v
     
@@ -62,7 +62,7 @@ module Matrices =
                 Tuple.fromList cells
                 
         static member (/) (m: Matrix, f: float) : Matrix =
-            { m with Cells = Array2D.init m.Height m.Width (fun r c -> m.[r,c] / f) }
+            { m with Cells = Array2D.init m.Height m.Width (fun r c -> m[r,c] / f) }
             
         override this.Equals other =
             let comp (f: float) (g: float) : bool =
@@ -131,7 +131,7 @@ module Matrices =
     /// Gets a value from a matrix.
     /// </summary>
     let get i j (m: Matrix) =
-        m.[i, j]
+        m[i, j]
         
     /// <summary>
     /// Sets a value in a matrix.
@@ -140,7 +140,7 @@ module Matrices =
     /// Operation is performed in place!
     /// </remarks>
     let set i j v (m: Matrix) =
-        m.[i, j] <- v
+        m[i, j] <- v
         
     let col i (m: Matrix) =
         m.Col i
@@ -153,7 +153,7 @@ module Matrices =
     /// </summary>
     let transpose (m: Matrix) =
         if m |> isSquare then
-            init m.Height m.Width (fun i j -> m.[j,i])
+            init m.Height m.Width (fun i j -> m[j,i])
         else
             failwith "Cannot transpose a non-square matrix."
         
@@ -170,7 +170,7 @@ module Matrices =
                 (fun i j ->
                     let i = if i >= row then i + 1 else i
                     let j = if j >= col then j + 1 else j
-                    matrix.[i,j]
+                    matrix[i,j]
                 )
         {
             Cells = cells
@@ -192,20 +192,20 @@ module Matrices =
         if m.Width <> m.Height then
             failwith "Cannot compute determinant for non-square matrix."
         else if m.Width = 2 then
-            m.Cells.[0,0] * m.Cells[1,1] - m.Cells[1,0] * m.Cells.[0,1]
+            m.Cells[0,0] * m.Cells[1,1] - m.Cells[1,0] * m.Cells[0,1]
         else if m.Width = 3 then
-            m.Cells.[0,0] * m.Cells[1,1] * m.Cells[2,2] +
-            m.Cells.[0,1] * m.Cells[1,2] * m.Cells[2,0] +
-            m.Cells.[0,2] * m.Cells[1,0] * m.Cells[2,1] -
-            m.Cells.[2,0] * m.Cells[1,1] * m.Cells[0,2] -
-            m.Cells.[2,1] * m.Cells[1,2] * m.Cells[0,0] -
-            m.Cells.[2,2] * m.Cells[1,0] * m.Cells[0,1]
+            m.Cells[0,0] * m.Cells[1,1] * m.Cells[2,2] +
+            m.Cells[0,1] * m.Cells[1,2] * m.Cells[2,0] +
+            m.Cells[0,2] * m.Cells[1,0] * m.Cells[2,1] -
+            m.Cells[2,0] * m.Cells[1,1] * m.Cells[0,2] -
+            m.Cells[2,1] * m.Cells[1,2] * m.Cells[0,0] -
+            m.Cells[2,2] * m.Cells[1,0] * m.Cells[0,1]
         else if m.Width = 4 then
             let cofactor0 = cofactor m 0 0
             let cofactor1 = cofactor m 0 1
             let cofactor2 = cofactor m 0 2
             let cofactor3 = cofactor m 0 3
-            m.[0,0] * cofactor0 + m.[0,1] * cofactor1 + m.[0,2] * cofactor2 + m.[0,3] * cofactor3
+            m[0,0] * cofactor0 + m[0,1] * cofactor1 + m[0,2] * cofactor2 + m[0,3] * cofactor3
         else
             failwithf "Can only compute determinant for 2x2 or 3x3 matrices, given %ix%i" m.Height m.Width
 
@@ -251,3 +251,31 @@ module Matrices =
             |> fun m -> m / det
         else
             failwith "Matrix is not invertible."
+
+    /// Creates a transformation matrix used to translate objects
+    let translation (x, y, z) =
+        let m = identity 4
+        do m[0,3] <- x
+        do m[1,3] <- y
+        do m[2,3] <- z
+        m
+
+    /// Creates a transformation used to scale objects
+    let scaling (x, y, z) =
+        let matrix = createSquare 4 0
+        matrix[0, 0] <- x
+        matrix[1, 1] <- y
+        matrix[2, 2] <- z
+        matrix[3, 3] <- 1
+        matrix
+
+    /// Creates a transformation used to rotate objects
+    let rotationX r =
+        let matrix = createSquare 4 0
+        matrix[0, 0] <- 1
+        matrix[1, 1] <- Math.Cos r
+        matrix[1, 2] <- -(Math.Sin r)
+        matrix[2, 1] <- Math.Sin r
+        matrix[2, 2] <- Math.Cos r
+        matrix[3, 3] <- 1
+        matrix

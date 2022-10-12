@@ -6,23 +6,23 @@ module Array2DTests
 
     let array =
         let grid = Array2D.create 5 3 "..."
-        grid.[0,0] <- "0,0"
-        grid.[0,1] <- "1,0"
-        grid.[0,2] <- "2,0"
-        grid.[0,3] <- "3,0"
-        grid.[0,4] <- "4,0"
+        grid[0,0] <- "0,0"
+        grid[0,1] <- "1,0"
+        grid[0,2] <- "2,0"
+        grid[0,3] <- "3,0"
+        grid[0,4] <- "4,0"
         
-        grid.[1,0] <- "0,1"
-        grid.[1,1] <- "1,1"
-        grid.[1,2] <- "2,1"
-        grid.[1,3] <- "3,1"
-        grid.[1,4] <- "4,1"
+        grid[1,0] <- "0,1"
+        grid[1,1] <- "1,1"
+        grid[1,2] <- "2,1"
+        grid[1,3] <- "3,1"
+        grid[1,4] <- "4,1"
         
-        grid.[2,0] <- "0,2"
-        grid.[2,1] <- "1,2"
-        grid.[2,2] <- "2,2"
-        grid.[2,3] <- "3,2"
-        grid.[2,4] <- "4,2"
+        grid[2,0] <- "0,2"
+        grid[2,1] <- "1,2"
+        grid[2,2] <- "2,2"
+        grid[2,3] <- "3,2"
+        grid[2,4] <- "4,2"
         grid
         
     let row0 = [ "0,0";"1,0";"2,0";"3,0";"4,0" ]
@@ -85,7 +85,7 @@ module Array2DTests
         [<Fact>]
         let ``ForAll should return false if any elements of the given array does not fulfil the predicate`` () =
             let array = Array2D.create 20 10 3
-            do array.[1,1] <- 2
+            do array[1,1] <- 2
             (array |> Array2D.forall ((=) 3)) |> should be False
 
     type Fold() =

@@ -1,6 +1,5 @@
 namespace RayTracer.Specflow
 
-open System.Runtime.InteropServices
 open RayTracer.Challenge
 open TechTalk.SpecFlow
 open FsUnit.Xunit
@@ -37,7 +36,7 @@ module MatricesSteps =
             
         let [<Then>] ``(.*)\[(\d),(\d)\] = (-?\d+\.?\d?)`` (m: string, i: int, j: int, value: float) =
             let matrix =  m |> _driver.ForceMatrix
-            do matrix.[i,j] |> should equal value
+            do matrix[i,j] |> should equal value
             
         let [<Then>] ``(.) = (.)`` (m1: string, m2: string) =
             let matrix1 = m1 |> _driver.GetMatrix
@@ -126,20 +125,21 @@ module MatricesSteps =
             matrix |> Matrices.isInvertible |> should be True
             
             
-        let [<Given>] ``(.) ← inverse\((.)\)`` (m1: string, m2: string) =
-            let matrix = m2 |> _driver.ForceMatrix
-            let inverse = matrix |> Matrices.inverse
-            do _driver.SetMatrix (m1, inverse)
+
+        let [<Given>] ``(.*) ← inverse\((.*)\)`` (name1: string, name2: string) =
+            let argument = _driver.ForceMatrix name2
+            let inverse = argument |> Matrices.inverse 
+            do _driver.SetMatrix (name1, inverse)
                 
         
         let [<Then>] ``(.)\[(\d),(\d)\] = -160/532`` (m: string, row: int, col: int) =
             let matrix = m |> _driver.ForceMatrix
-            matrix.[row, col] |> should equal (-160.0/532.0)
+            matrix[row, col] |> should equal (-160.0/532.0)
                 
         
         let [<Then>] ``(.)\[(\d),(\d)\] = 105/532`` (m: string, row: int, col: int) =
             let matrix = m |> _driver.ForceMatrix
-            matrix.[row, col] |> should equal (105.0/532.0)
+            matrix[row, col] |> should equal (105.0/532.0)
 
 
         let [<Then>] ``(.) is the following (\d)x(\d) matrix:`` (m: string, d1: int, d2: int, table: Table) =
@@ -147,7 +147,7 @@ module MatricesSteps =
             do expected.Height |> should equal d1
             do expected.Width |> should equal d2
             let matrix = _driver.ForceMatrix m
-            let rounded = Matrices.init matrix.Height matrix.Width (fun r c -> System.Math.Round(matrix.[r,c], 5))
+            let rounded = Matrices.init matrix.Height matrix.Width (fun r c -> System.Math.Round(matrix[r,c], 5))
             rounded |> should equal expected
 
 
@@ -158,7 +158,7 @@ module MatricesSteps =
             let matrix =
                 _driver.ForceMatrix m
                 |> Matrices.inverse
-            let rounded = Matrices.init matrix.Height matrix.Width (fun r c -> System.Math.Round(matrix.[r,c], 5))
+            let rounded = Matrices.init matrix.Height matrix.Width (fun r c -> System.Math.Round(matrix[r,c], 5))
             rounded |> should equal expected
             
             

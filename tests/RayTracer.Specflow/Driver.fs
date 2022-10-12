@@ -24,27 +24,27 @@ module Driver =
             
         member public __.GetTuple(key) =
             if tuples.ContainsKey(key) then
-                Some tuples.[key]
+                Some tuples[key]
             else
                 None
                 
         member public __.ForceTuple(key) =
-            tuples.[key]
+            tuples[key]
                 
         member public __.GetColor(key: string) : Color.Color option =
             if colors.ContainsKey(key) then
-                Some colors.[key]
+                Some colors[key]
             else
                 None
                 
         member public __.GetMatrix(key: string) : Matrices.Matrix option =
             if matrices.ContainsKey(key) then
-                Some matrices.[key]
+                Some matrices[key]
             else
                 None
 
         member public __.ForceMatrix (key: string) =
-            matrices.[key]
+            matrices[key]
             
         member public __.ShouldEqual(t, x, y, z, w) =
             match __.GetTuple t with

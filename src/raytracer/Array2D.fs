@@ -23,7 +23,7 @@ module Array2D =
     /// Zero-based
     /// </remarks>
     let row i (array: 'a [,]) =
-        array.[i,*]
+        array[i,*]
         
     /// <summary>
     /// Selects the i-th column from the array.
@@ -32,7 +32,7 @@ module Array2D =
     /// Zero-based
     /// </remarks>
     let col i (array: 'a [,]) =
-        array.[*,i]
+        array[*,i]
         
     /// <summary>
     /// Returns the array as a list of columns.
