@@ -20,6 +20,9 @@
     <Compile Include="Tuple.fs" />
     <Compile Include="Matrices.fs" />
     <Compile Include="Color.fs" />
+    <Compile Include="Spheres.fs" />
+    <Compile Include="Rays.fs" />
+    <Compile Include="Intersections.fs" />
     <Compile Include="Canvas.fs" />
     <Compile Include="PPM.fs" />
     <Compile Include="Program.fs" />

@@ -8,7 +8,7 @@ module Input =
         | Tuple of Tuple.Tuple
         | Matrix of Matrices.Matrix
         
-    let tryFromDriver (driver: Driver.Driver) (name: string) : Input =
+    let forceFromDriver (driver: Driver.Driver) (name: string) : Input =
         if name = "identity_matrix" then Matrices.identity 4 |> Input.Matrix
         else
             let argAsTuple = driver.GetTuple name
@@ -24,3 +24,7 @@ module Input =
         | Tuple _, Matrix _ -> failwith "Cannot multiply a tuple with a matrix"
         | Matrix m1, Matrix m2 -> m1 * m2 |> Input.Matrix
         
+    let forceMatrix (input: Input) =
+        match input with
+        | Matrix m -> m
+        | _ -> failwith "Input is not if type matrix"

@@ -81,6 +81,15 @@ module Tuple =
                     W = t.W * f
             }
             
+        static member (*) (f: float, t: Tuple) =
+            {
+                t with
+                    X = t.X * f
+                    Y = t.Y * f
+                    Z = t.Z * f
+                    W = t.W * f
+            }
+            
         static member (/) (t: Tuple, f: float) =
             {
                 t with

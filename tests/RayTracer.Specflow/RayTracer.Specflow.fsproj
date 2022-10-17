@@ -9,14 +9,20 @@
     <ItemGroup>
         <Compile Include="Driver.fs" />
         <Compile Include="Input.fs" />
+        <Compile Include="IntersectionTargets.fs" />
         <Compile Include="TuplesSteps.fs" />
         <Compile Include="CanvasSteps.fs" />
         <Compile Include="MatricesSteps.fs" />
         <Compile Include="TransformationsStep.fs" />
+        <Compile Include="RaysSteps.fs" />
+        <Compile Include="SpheresSteps.fs" />
+        <Compile Include="IntersectionsSteps.fs" />
         <Compile Include="Program.fs" />
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="Expecto" Version="9.0.4" />
+        <PackageReference Include="Expecto.XUnit" Version="0.2.1" />
         <PackageReference Include="FsUnit.xUnit" Version="4.1.0" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
         <PackageReference Include="SpecFlow" Version="3.9.40" />
