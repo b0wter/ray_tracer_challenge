@@ -13,6 +13,10 @@ module Intersections =
         Target: IntersectionTarget
     }
     
+    let intersectionTargetTransform =
+        function
+        | Sphere s -> s.Transformation
+   
     type Intersections = Intersection list
     
     type Hit = Intersection option

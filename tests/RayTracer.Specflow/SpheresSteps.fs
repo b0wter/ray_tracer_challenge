@@ -17,5 +17,18 @@ module SpheresSteps =
             let originalSphere = driver.ForceSphere "s"
             let transform = driver.ForceMatrix "t"
             let updatedSphere = originalSphere |> Spheres.withTransform transform
-            do driver.SetSphere ("s", updatedSphere)
+            do driver.UpdateSphere ("s", updatedSphere)
             
+        let [<When>] ``set_transform\(s, translation\(5, 0, 0\)\)`` () =
+            do driver.SetMatrix ("s", Matrices.translation (5, 0, 0))
+            
+        let [<When>] ``set_transform\(s, scaling\((.*), (.*), (.*)\)\)`` (x: int, y: int, z: int) =
+            let originalSphere = driver.ForceSphere "s"
+            let transform = Matrices.scaling (x, y, z)
+            let updatedSphere = originalSphere |> Spheres.withTransform transform
+            do driver.UpdateSphere ("s", updatedSphere)
+            
+        let [<Then>] ``s\.transform = t`` () =
+            let transform = driver.ForceMatrix "t"
+            let sphere = driver.ForceSphere "s"
+            sphere.Transformation |> should equal transform

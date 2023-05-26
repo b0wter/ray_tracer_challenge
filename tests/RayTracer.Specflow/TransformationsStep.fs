@@ -15,7 +15,6 @@ module TransformationsStep =
             let transform = Matrices.translation (x, y, z)
             do _driver.SetMatrix (name, transform)
 
-        //let [<Then>] ``([a-zA-Z]*) \* ([a-zA-Z]*) = ([a-zA-Z]*)`` (name1: string, name2: string, name3: string) =
         let [<Then>] ``(\w*) \* (\w*) = (\w*)`` (name1: string, name2: string, name3: string) =
             let arg1 = Input.forceFromDriver _driver name1
             let arg2 = Input.forceFromDriver _driver name2

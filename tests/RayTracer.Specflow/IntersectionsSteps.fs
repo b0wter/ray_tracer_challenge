@@ -3,6 +3,7 @@ namespace RayTracer.Specflow
 open RayTracer.Challenge
 open TechTalk.SpecFlow
 open FsUnit.Xunit
+
 module Expect = Expecto.Flip.Expect
 
 module IntersectionsSteps =

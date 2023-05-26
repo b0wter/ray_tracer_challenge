@@ -32,6 +32,10 @@ module Driver =
         member public __.SetSphere(key, sphere) =
             do spheres.Add(key, sphere)
             
+        member public __.UpdateSphere(key, sphere) =
+            do spheres.Remove(key) |> ignore
+            do spheres.Add(key, sphere)
+            
         member public __.SetObject(key, object) =
             do objects.Add(key, object)
             
