@@ -22,6 +22,15 @@ module Intersections =
         sorted |> List.tryFind (fun s -> s.T >= 0)
     
     let intersectionsWith (target: IntersectionTarget) (ray: Rays.Ray) : Intersections =
+        // Instead of transforming the sphere for the intersection test
+        // we use an inverse of the transform on the ray because that makes
+        // the computation easier
+        let ray =
+            target
+            |> intersectionTargetTransform
+            |> Matrices.inverse
+            |> (fun matrix -> Rays.transform matrix ray)
+        
         let sphereToRay = ray.Origin - Tuple.createPoint (0, 0, 0)
         
         let a = Tuple.dot ray.Direction ray.Direction
