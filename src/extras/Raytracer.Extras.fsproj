@@ -8,7 +8,8 @@
   <ItemGroup>
     <Compile Include="Chapter1Projectile.fs" />
     <Compile Include="Chapter2Canvas.fs" />
-    <Compile Include="Chapter7Clock.fs" />
+    <Compile Include="Chapter4Clock.fs" />
+    <Compile Include="Chapter5Raycast.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

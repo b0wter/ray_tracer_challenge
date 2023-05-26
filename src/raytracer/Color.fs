@@ -81,3 +81,12 @@ module Color =
         
     let white =
         create(1.0, 1.0, 1.0)
+
+    let red =
+        create(1.0, 0, 0)
+        
+    let green =
+        create(0.0, 1.0, 0.0)
+        
+    let blue =
+        create(0.0, 0.0, 1.0)

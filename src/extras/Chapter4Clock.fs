@@ -3,7 +3,7 @@ namespace Raytracer.Extras
 open System
 open RayTracer.Challenge
 
-module Chapter7Clock =
+module Chapter4Clock =
     let private edgeLength = 128
     
     let writeClockRenderToFile (filename: string) =
