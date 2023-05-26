@@ -20,7 +20,12 @@ module SpheresSteps =
             do driver.UpdateSphere ("s", updatedSphere)
             
         let [<When>] ``set_transform\(s, translation\(5, 0, 0\)\)`` () =
-            do driver.SetMatrix ("s", Matrices.translation (5, 0, 0))
+            let translation = Matrices.translation (5, 0, 0)
+            do driver.SetMatrix ("s", translation)
+            let updatedSphere =
+                driver.ForceSphere "s"
+                |> Spheres.withTransform translation
+            do driver.UpdateSphere ("s", updatedSphere)
             
         let [<When>] ``set_transform\(s, scaling\((.*), (.*), (.*)\)\)`` (x: int, y: int, z: int) =
             let originalSphere = driver.ForceSphere "s"
