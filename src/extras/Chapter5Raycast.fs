@@ -5,7 +5,7 @@ open System.Threading.Tasks
 open RayTracer.Challenge
 
 module Chapter5Raycast =
-    let private edgeLength = 100
+    let private edgeLength = 500
     
     (*
                                                    |
@@ -25,11 +25,12 @@ module Chapter5Raycast =
             let canvasDistance = 10.0
             let sphere = Spheres.create ()
             let camera = Tuple.createPoint (0.0, 0.0, -5.0)
+            let offset = -edgeLength / 2
             
             let drawRange (startX: int) (endX: int) =
                 for x in startX..endX - 1 do
                     for y in 0..edgeLength - 1 do
-                        let ray = Rays.create (camera, Tuple.createVector(-50 + x |> float, -50 + y |> float, canvasDistance*15.0))
+                        let ray = Rays.create (camera, Tuple.createVector(offset + x |> float, offset + y |> float, edgeLength * 2 |> float))
                         let intersections = Intersections.intersectionsWith (Intersections.Sphere sphere) ray
                         if intersections |> Intersections.hit |> Option.isSome then
                             Canvas.setPixel x y Color.red canvas
