@@ -6,7 +6,7 @@ open Raytracer.Extras
 
 let watch = Stopwatch()
 watch.Start()
-let chapter7Result = (Chapter5Raycast.writeRaycastToFile 4 "result.ppm").GetAwaiter().GetResult()
+let chapter7Result = (Chapter5Raycast.writeRaycastToFile 1 "result.ppm").GetAwaiter().GetResult()
 watch.Stop()
 printfn "%i" watch.ElapsedMilliseconds
 
