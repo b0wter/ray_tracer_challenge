@@ -115,7 +115,7 @@ module SpheresSteps =
             
         let [<When>] ``n ← normal_at\(s, point\(0, √2\/2, -√2\/2\)\)`` () =
             let sphere = driver.ForceSphere "s"
-            let point = Tuple.createPoint (-1.0, Math.Sqrt(2.0) / 2.0, -Math.Sqrt(2.0) / 2.0)
+            let point = Tuple.createPoint (0.0, Math.Sqrt(2.0) / 2.0, -Math.Sqrt(2.0) / 2.0)
             let normal = Spheres.normalAt (sphere, point)
             do driver.SetTuple ("n", normal)
             
