@@ -118,6 +118,9 @@ module Tuple =
     let createPoint (x, y, z) =
         create (x, y, z, 1.0)
         
+    let zeroPoint =
+        createPoint (0, 0, 0)
+        
     let fromList list =
         match list with
         | [ x; y; z; w ] ->
