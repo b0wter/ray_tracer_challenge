@@ -104,7 +104,7 @@ module SpheresSteps =
             
         let [<Given>] ``m ← scaling\(1, 0.5, 1\) \* rotation_z\(π/5\)`` () =
             let scaling = Matrices.scaling (1, 0.5, 1)
-            let rotation = Matrices.rotationZ (System.Math.PI / 5.0)
+            let rotation = Matrices.rotationZ (Math.PI / 5.0)
             do driver.SetMatrix ("m", (scaling * rotation))
             
         let [<Given>] ``set_transform\(s, m\)`` () =
